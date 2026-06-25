@@ -255,14 +255,18 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(discordPayload)
             })
-           .then(response => {
-    if (response.ok) {
-        document.getElementById('staff-exam-form').reset();
-    }
-})
-.catch(error => {
-    console.error('Error:', error);
-})
+            .then(response => {
+                if (response.ok) {
+                    alert('🔥 أسطوري! تم إرسال طلبك بنجاح ووصل لغرفة الإدارة في الديسكورد.');
+                    document.getElementById('staff-exam-form').reset();
+                } else {
+                    alert(' الـ Webhook فيه مشكلة، تأكد من إعدادات الروم في ديسكورد.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(' حصلت مشكلة أثناء الاتصال بالديسكورد.');
+            })
             .finally(() => {
                 submitButton.disabled = false;
                 submitButton.innerHTML = '<span>تقديم الطلب الآن</span> <i class="fa-solid fa-paper-plane"></i>';
