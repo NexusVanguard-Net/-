@@ -1,0 +1,119 @@
+<script>
+        function updateTimeAgo() {
+            document.querySelectorAll('.news-card').forEach((card, index) => {
+                // مفتاح سحري فريد لكل كارت بناءً على ترتيبه لحفظ وقت النشر التلقائي
+                const storageKey = `news_post_time_${index}`;
+                let savedTime = localStorage.getItem(storageKey);
+
+                // لو الكارت لسه محطوط حالا ومكتوب فيه كالكوليت، بنسجل وقت اللحظة الحالية فوراً
+                const timeElement = card.querySelector('.time-ago');
+                if (timeElement && timeElement.innerText === "Calculating..." && !savedTime) {
+                    const nowISO = new Date().toISOString();
+                    localStorage.setItem(storageKey, nowISO);
+                    card.setAttribute('data-time', nowISO);
+                    savedTime = nowISO;
+                }
+
+                // قراءة تاريخ الخبر (سواء الأصلي أو المحفوظ تلقائياً)
+                const timeAttr = savedTime || card.getAttribute('data-time');
+                if (!timeAttr) return;
+
+                const postDate = new Date(timeAttr);
+                const nowDate = new Date();
+                const diffMs = nowDate - postDate;
+                
+                // الحسبة الدقيقة بالثواني والدقائق والساعات
+                const diffSecs = Math.floor(diffMs / 1000);
+                const diffMins = Math.floor(diffSecs / 60);
+                const diffHours = Math.floor(diffMins / 60);
+                const diffDays = Math.floor(diffHours / 24);
+
+                let timeString = "";
+                
+                // العداد هيبدأ يعد من أول كام ثانية فوراً!
+                if (diffSecs < 60) { 
+                    timeString = diffSecs <= 3 ? "Just Now" : `${diffSecs} seconds ago`; 
+                }
+                else if (diffMins < 60) { 
+                    timeString = diffMins === 1 ? "1 minute ago" : `${diffMins} minutes ago`; 
+                }
+                else if (diffHours < 24) { 
+                    timeString = diffHours === 1 ? "1 hour ago" : `${diffHours} hours ago`; 
+                }
+                else { 
+                    timeString = diffDays === 1 ? "Yesterday" : `${diffDays} days ago`; 
+                }
+
+                if (timeElement) { timeElement.innerText = timeString; }
+            });
+        }
+        
+        // تشغيل العداد فوراً عند تحميل الصفحة
+        updateTimeAgo();
+        
+        // خليناه يحدث كل ثانية واحدة (1000ms) بدل دقيقة عشان تشوف الثواني وهي بتعد قدام عينك!
+        setInterval(updateTimeAgo, 1000); 
+    </script>
+
+
+
+
+
+
+<main class="news-section">
+        <div class="news-header">
+            <h1>Latest Server Updates</h1>
+            <p>Stay up to date with the newest events, features, and announcements in Nexus Vanguard.</p>
+        </div>
+
+        <div class="news-grid">
+            
+            <article class="news-card card-announcement" data-time="2026-06-24T01:50:00">
+                <div class="card-glow"></div>
+                <div class="news-image-wrapper">
+                    <img src="image.png" alt="News Image" class="news-card-img">
+                </div>
+                <div class="news-content">
+                    <span class="news-badge badge-purple"><i class="fa-solid fa-bullhorn"></i> Announcement</span>
+                    <h2 class="news-title"></h2>
+                    <p class="news-desc">Get ready for the biggest update yet. New roles, leveling system, and exclusive rewards await you this season.</p>
+                    <div class="news-footer">
+                        <span class="news-date"><i class="fa-regular fa-clock"></i> <span class="time-ago">Calculating...</span></span>
+                        <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card card-event" data-time="2026-06-23T23:45:00">
+                <div class="card-glow"></div>
+                <div class="news-image-wrapper">
+                    <img src="image.png" alt="News Image" class="news-card-img">
+                </div>
+                <div class="news-content">
+                    <span class="news-badge badge-cyan"><i class="fa-solid fa-trophy"></i> Events</span>
+                    <h2 class="news-title">Weekly Gaming Tournament</h2>
+                    <p class="news-desc">Join our upcoming community tournament this Friday. Show your skills and win special discord nitro rewards.</p>
+                    <div class="news-footer">
+                        <span class="news-date"><i class="fa-regular fa-clock"></i> <span class="time-ago">Calculating...</span></span>
+                        <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card card-update" data-time="2026-06-22T14:20:00">
+                <div class="card-glow"></div>
+                <div class="news-image-wrapper">
+                    <img src="image.png" alt="News Image" class="news-card-img">
+                </div>
+                <div class="news-content">
+                    <span class="news-badge badge-green"><i class="fa-solid fa-user-shield"></i> Updates</span>
+                    <h2 class="news-title">New Staff Recruitment</h2>
+                    <p class="news-desc">We are looking for active moderators to join our vanguard team. Applications are now open in the support section.</p>
+                    <div class="news-footer">
+                        <span class="news-date"><i class="fa-regular fa-clock"></i> <span class="time-ago">Calculating...</span></span>
+                        <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+        </div></article>

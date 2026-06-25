@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Vanguard - News</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght=400;700;900&family=Inter:wght=400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bg-animation">
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-logo">
+            <i class="fa-brands fa-discord"></i>
+            <span>Nexus Vanguard</span>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="support.html">Support</a></li>
+        </ul>
+
+        <a href="YOUR_DISCORD_INVITE_LINK" target="_blank" class="nav-btn">Join Us</a>
+    </nav>
+
+    
+        </main>
+<script>
+        // ─── 1️⃣ الجزء الأول: عداد الوقت الذكي ثانية بثانية ───
+        function updateTimeAgo() {
+            document.querySelectorAll('.news-card').forEach((card, index) => {
+                const storageKey = `news_post_time_${index}`;
+                let savedTime = localStorage.getItem(storageKey);
+
+                const timeElement = card.querySelector('.time-ago');
+                if (timeElement && (timeElement.innerText === "Calculating..." || timeElement.innerText === "Loading...") && !savedTime) {
+                    const nowISO = new Date().toISOString();
+                    localStorage.setItem(storageKey, nowISO);
+                    card.setAttribute('data-time', nowISO);
+                    savedTime = nowISO;
+                }
+
+                const timeAttr = savedTime || card.getAttribute('data-time');
+                if (!timeAttr) return;
+
+                const postDate = new Date(timeAttr);
+                const nowDate = new Date();
+                const diffMs = nowDate - postDate;
+                
+                const diffSecs = Math.floor(diffMs / 1000);
+                const diffMins = Math.floor(diffSecs / 60);
+                const diffHours = Math.floor(diffMins / 60);
+                const diffDays = Math.floor(diffHours / 24);
+
+                let timeString = "";
+                
+                if (diffSecs < 60) { timeString = diffSecs <= 3 ? "Just Now" : `${diffSecs} seconds ago`; }
+                else if (diffMins < 60) { timeString = diffMins === 1 ? "1 minute ago" : `${diffMins} minutes ago`; }
+                else if (diffHours < 24) { timeString = diffHours === 1 ? "1 hour ago" : `${diffHours} hours ago`; }
+                else { timeString = diffDays === 1 ? "Yesterday" : `${diffDays} days ago`; }
+
+                if (timeElement) { timeElement.innerText = timeString; }
+            });
+        }
+        
+        updateTimeAgo();
+        setInterval(updateTimeAgo, 1000); 
+
+        // ─── 2️⃣ الجزء الثاني: صناعة الصندوق الفخم في نص الشاشة (Popup Modal) ───
+        
+        // أولاً: بنخلق الستايل الصامت للصندوق عشان يظهر بأنيميشن فخم بدون ملف CSS خارجي
+        const modalStyle = document.createElement('style');
+        modalStyle.innerHTML = `
+            .news-modal-overlay {
+                position: fixed !important; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(6, 7, 13, 0.85) !important; backdrop-filter: blur(8px) !important;
+                z-index: 100000 !important; display: flex; align-items: center; justify-content: center;
+                opacity: 0; pointer-events: none; transition: opacity 0.4s ease-in-out; padding: 20px;
+            }
+            .news-modal-overlay.active { opacity: 1; pointer-events: auto; }
+            .news-modal-box {
+                background: #161825 !important; width: 100%; max-width: 650px;
+                border-radius: 24px !important; padding: 40px !important; box-sizing: border-box;
+                transform: scale(0.7) translateY(50px); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                position: relative; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+            }
+            .news-modal-overlay.active .news-modal-box { transform: scale(1) translateY(0); }
+            .news-modal-close {
+                position: absolute; top: 20px; right: 24px; background: none; border: none;
+                color: #72767d; font-size: 1.5rem; cursor: pointer; transition: color 0.2s;
+            }
+            .news-modal-close:hover { color: #fff; }
+        `;
+        document.head.appendChild(modalStyle);
+
+        // ثانياً: بنبني هيكل الصندوق في الصفحة
+        const modalContainer = document.createElement('div');
+        modalContainer.className = 'news-modal-overlay';
+        modalContainer.innerHTML = `
+            <div class="news-modal-box">
+                <button class="news-modal-close">&times;</button>
+                <div id="modal-badge-space"></div>
+                <h2 id="modal-title-text" style="font-size: 1.8rem; font-weight: 800; color: #fff; margin: 15px 0 20px; font-family: sans-serif;"></h2>
+                <div style="max-height: 350px; overflow-y: auto; padding-right: 5px;">
+                    <p id="modal-desc-text" style="font-size: 1.15rem; color: #ffffff; line-height: 1.8; font-family: sans-serif; white-space: pre-line;"></p>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modalContainer);
+
+        // ثالثاً: تشغيل الأكشن والأنيميشن الفخم عند الضغط
+        document.querySelectorAll('.news-card').forEach(card => {
+            const readMoreBtn = card.querySelector('.read-more');
+            
+            if (readMoreBtn) {
+                readMoreBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    // سحب البيانات من الكارت اللي اتمسكت عليه الضغطة
+                    const badgeHTML = card.querySelector('.news-badge') ? card.querySelector('.news-badge').outerHTML : '';
+                    const titleText = card.querySelector('.news-title') ? card.querySelector('.news-title').innerText : '';
+                    const descText = card.querySelector('.news-desc') ? card.querySelector('.news-desc').innerText : '';
+                    const cardBorderColor = window.getComputedStyle(card).getPropertyValue('border-top-color') || '#5865F2';
+
+                    // حقن البيانات جوه الصندوق الفخم وتلوين إطاره بنفس لون الكارت
+                    document.getElementById('modal-badge-space').innerHTML = badgeHTML;
+                    document.getElementById('modal-title-text').innerText = titleText;
+                    document.getElementById('modal-desc-text').innerText = descText;
+                    document.querySelector('.news-modal-box').style.border = `2px solid ${cardBorderColor}`;
+                    document.querySelector('.news-modal-box').style.boxShadow = `0 20px 50px ${cardBorderColor}33`;
+
+                    // فتح الصندوق بأنيميشن الزووم الناعم
+                    modalContainer.classList.add('active');
+                });
+            }
+        });
+
+        // رابعاً: قفل الصندوق لما تضغط على الاكس (X) أو برا الصندوق
+        document.querySelector('.news-modal-close').addEventListener('click', () => modalContainer.classList.remove('active'));
+        modalContainer.addEventListener('click', (e) => {
+            if (e.target === modalContainer) modalContainer.classList.remove('active');
+        });
+    </script>
+    </script>
+</body>
+</html>
+<style>/* ==========================================
+   1. General Reset & Base Styles
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Cairo', sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    background-color: #0a0b10;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ==========================================
+   2. Animated Background
+   ========================================== */
+.bg-animation {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 50%, #1a1c29 0%, #0a0b10 100%);
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.12;
+    animation: float 12s infinite alternate ease-in-out;
+}
+
+.c1 { width: 500px; height: 500px; background: #5865F2; top: -10%; left: -10%; }
+.c2 { width: 600px; height: 600px; background: #00d2ff; bottom: -15%; right: -10%; animation-delay: 2s; }
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(60px, 40px) scale(1.15); }
+}
+
+/* ==========================================
+   3. Navbar Style
+   ========================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 8%;
+    background: rgba(10, 11, 16, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 10;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-logo i {
+    color: #5865F2;
+    font-size: 1.4rem;
+    filter: drop-shadow(0 0 8px #5865F2);
+}
+
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { color: #b9bbbe; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease; position: relative; padding: 4px 0; }
+.nav-links a:hover, .nav-links a.active { color: #fff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+.nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #5865F2; transition: width 0.3s ease; box-shadow: 0 0 8px #5865F2; }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-btn {
+    background: #5865F2; color: #fff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3); transition: all 0.3s ease;
+}
+.nav-btn:hover { background: #4752c4; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(88, 101, 242, 0.5); }
+
+/* ==========================================
+   4. News Grid Section
+   ========================================== */
+.news-section {
+    position: relative; z-index: 2; flex: 1; padding: 140px 8% 80px 8%; max-width: 1400px; width: 100%; margin: 0 auto;
+}
+.news-header { text-align: center; margin-bottom: 60px; }
+.news-header h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 15px; background: linear-gradient(135deg, #ffffff 0%, #8a8ca8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1px; }
+.news-header p { font-size: 1.15rem; color: #b9bbbe; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+.news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; width: 100%; }
+
+/* Cyber Card Design */
+.news-card {
+    position: relative; background: rgba(18, 19, 29, 0.5); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 20px; padding: 30px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; flex-direction: column; align-items: center; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); overflow: hidden;
+}
+
+.card-glow {
+    position: absolute; top: 50%; left: 50%; width: 120%; height: 120%; background: radial-gradient(circle, transparent 40%, rgba(88, 101, 242, 0.03) 70%); transform: translate(-50%, -50%) scale(0.8); opacity: 0; transition: all 0.4s ease; z-index: 1; pointer-events: none;
+}
+.news-card:hover .card-glow { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+/* الوان التوهج والحدود عند التمرير بالماوس */
+.news-card.card-announcement:hover { border-color: rgba(88, 101, 242, 0.4); box-shadow: 0 0 30px rgba(88, 101, 242, 0.15); }
+.news-card.card-event:hover { border-color: rgba(0, 210, 255, 0.4); box-shadow: 0 0 30px rgba(0, 210, 255, 0.15); }
+.news-card.card-update:hover { border-color: rgba(35, 165, 90, 0.4); box-shadow: 0 0 30px rgba(35, 165, 90, 0.15); }
+.news-card:hover { transform: translateY(-8px); background: rgba(22, 24, 37, 0.8); }
+
+.news-image-wrapper { position: relative; z-index: 2; margin-bottom: 25px; display: flex; justify-content: center; width: 100%; }
+.news-card-img { max-width: 150px; width: 100%; height: auto; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); transition: transform 0.4s ease; }
+.news-card:hover .news-card-img { transform: scale(1.05) rotate(2deg); }
+
+.news-content { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; flex: 1; text-align: left; }
+.news-badge { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; font-size: 0.75rem; font-weight: 800; padding: 6px 14px; border-radius: 30px; margin-bottom: 16px; text-transform: uppercase; }
+.badge-purple { background: rgba(88, 101, 242, 0.1); color: #5865F2; border: 1px solid rgba(88, 101, 242, 0.2); }
+.badge-cyan { background: rgba(0, 210, 255, 0.1); color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.2); }
+.badge-green { background: rgba(35, 165, 90, 0.1); color: #23a55a; border: 1px solid rgba(35, 165, 90, 0.2); }
+
+.news-title { font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 12px; }
+.news-desc { font-size: 0.95rem; color: #96989d; line-height: 1.6; margin-bottom: 25px; flex: 1; }
+.news-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 18px; width: 100%; }
+.news-date { font-size: 0.85rem; color: #72767d; display: flex; align-items: center; gap: 5px;}
+.read-more { font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+.card-announcement .read-more { color: #5865F2; }
+.card-event .read-more { color: #00d2ff; }
+.card-update .read-more { color: #23a55a; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar { padding: 10px 5%; } .nav-links { display: none; }
+    .news-section { padding: 120px 5% 60px 5%; } .news-grid { grid-template-columns: 1fr; }
+}</style>
