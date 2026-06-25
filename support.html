@@ -5,22 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexus Vanguard - Recruitment</title>
     
-    <!-- الخطوط والأيقونات الأساسية -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- ملف الـ CSS القديم بتاعك -->
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
-    <!-- الخلفية المتحركة المرجعة بنجاح -->
     <div class="bg-animation">
         <div class="circle c1"></div>
         <div class="circle c2"></div>
     </div>
 
-    <!-- شريط التنقل (Navbar) -->
     <nav class="navbar">
         <div class="nav-logo">
             <i class="fa-brands fa-discord"></i>
@@ -36,12 +32,10 @@
         <a href="YOUR_DISCORD_INVITE_LINK" target="_blank" class="nav-btn">Join Us</a>
     </nav>
 
-    <!-- الحاوية المعزولة تماماً لمنع شقلبة الستايل -->
     <div class="nvg-isolated-container">
         <div class="nvg-main-card">
             <div class="nvg-card-glow"></div>
             
-            <!-- الهيدر -->
             <div class="nvg-header">
                 <div class="nvg-badge"><i class="fa-solid fa-shield-halved"></i> طلب الانضمام لطاقم الإدارة</div>
                 <h2>Staff Recruitment Form</h2>
@@ -51,10 +45,8 @@
                 </div>
             </div>
 
-            <!-- الفورم الرئيسي -->
             <form id="staff-exam-form">
                 
-                <!-- القسم الأول -->
                 <div class="nvg-divider">
                     <span><i class="fa-solid fa-id-card"></i> القسم الأول: البيانات الشخصية</span>
                 </div>
@@ -75,15 +67,13 @@
                     <input type="number" id="user-age" class="nvg-field-text" placeholder="اكتب عمرك الحقيقي هنا..." required>
                 </div>
 
-                <!-- القسم الثاني -->
                 <div class="nvg-divider">
                     <span><i class="fa-solid fa-list-check"></i> القسم الثاني: أسئلة الاختيارات</span>
                 </div>
 
-                <!-- سؤال اختيار 1 -->
                 <div class="nvg-input-box">
                     <div class="nvg-q-row">
-                        <h3 class="nvg-question-text">السؤال 1: </h3>
+                        <h3 class="nvg-question-text"></h3>
                         <span class="nvg-points">[ 10 درجات ]</span>
                     </div>
                     <div class="nvg-options-list">
@@ -102,10 +92,9 @@
                     </div>
                 </div>
 
-                <!-- سؤال اختيار 2 -->
                 <div class="nvg-input-box">
                     <div class="nvg-q-row">
-                        <h3 class="nvg-question-text">السؤال 2: </h3>
+                        <h3 class="nvg-question-text"></h3>
                         <span class="nvg-points">[ 10 درجات ]</span>
                     </div>
                     <div class="nvg-options-list">
@@ -124,30 +113,26 @@
                     </div>
                 </div>
 
-                <!-- القسم الثالث -->
                 <div class="nvg-divider">
                     <span><i class="fa-solid fa-pen-to-square"></i> القسم الثالث: أسئلة الشرح والمواقف (مقالي)</span>
                 </div>
 
-                <!-- سؤال مقالي 1 -->
                 <div class="nvg-input-box">
                     <div class="nvg-q-row">
-                        <h3 class="nvg-question-text">السؤال 3: </h3>
+                        <h3 class="nvg-question-text"></h3>
                         <span class="nvg-points">[ 15 درجة ]</span>
                     </div>
                     <textarea id="essay-q3" class="nvg-field-area" rows="4" placeholder="" required></textarea>
                 </div>
 
-                <!-- سؤال مقالي 2 -->
                 <div class="nvg-input-box">
                     <div class="nvg-q-row">
-                        <h3 class="nvg-question-text">السؤال 4: </h3>
+                        <h3 class="nvg-question-text"></h3>
                         <span class="nvg-points">[ 20 درجة ]</span>
                     </div>
                     <textarea id="essay-q4" class="nvg-field-area" rows="4" placeholder="" required></textarea>
                 </div>
 
-                <!-- زر الإرسال -->
                 <div class="nvg-btn-wrapper">
                     <button type="submit" id="submit-btn" class="nvg-submit-btn">
                         <span>تقديم الطلب الآن</span>
@@ -159,9 +144,7 @@
         </div>
     </div>
 
-    <!-- تنسيقات قوية ومستقلة تمنع أي تداخل أو شقلبة عرضية -->
     <style>
-        /* كود تنسيق الخلفية المتحركة والدوائر للتأكد من ظهورها */
         .bg-animation {
             position: fixed !important;
             top: 0 !important;
@@ -181,17 +164,17 @@
             align-items: center !important;
             width: 100% !important;
             min-height: 100vh !important;
-            padding: 150px 20px 80px 20px !important; /* مسافة علوية عشان النيوبار */
+            padding: 150px 20px 80px 20px !important;
             box-sizing: border-box !important;
             position: relative !important;
-            z-index: 10 !important; /* فوق الخلفية */
+            z-index: 10 !important;
         }
 
         .nvg-main-card {
             position: relative !important;
             width: 100% !important;
             max-width: 800px !important;
-            background: rgba(15, 17, 28, 0.85) !important; /* تفتيح خفيف للشفافية مع الخلفية */
+            background: rgba(15, 17, 28, 0.85) !important;
             border: 1px solid rgba(88, 101, 242, 0.25) !important;
             border-radius: 24px !important;
             padding: 45px 35px !important;
@@ -221,7 +204,7 @@
         .nvg-divider i { margin-left: 6px !important; }
 
         .nvg-input-box { display: flex !important; flex-direction: column !important; background: rgba(255, 255, 255, 0.01) !important; border: 1px solid rgba(255, 255, 255, 0.04) !important; padding: 20px !important; border-radius: 14px !important; margin-bottom: 20px !important; box-sizing: border-box !important; width: 100% !important; }
-        .nvg-q-row { display: flex !important; justify-content: space-between !important; align-items: center !important; margin-bottom: 12px !important; gap: 15px !important; width: 100% !important; }
+        .nvg-q-row { display: flex !important; justify-content: space-between !important; align-items: center !important; margin-bottom: 12px !important; gap: 15px !important; width: 100% !important; min-height: 24px !important; }
         .nvg-q-row h3 { font-size: 1.05rem !important; color: #fff !important; font-weight: 700 !important; margin: 0 !important; }
         .nvg-points { font-size: 0.8rem !important; color: #00d2ff !important; font-weight: 700 !important; background: rgba(0, 210, 255, 0.1) !important; padding: 3px 8px !important; border-radius: 5px !important; }
         .nvg-required { font-size: 0.8rem !important; color: #ff4757 !important; font-weight: 700; }
@@ -230,7 +213,7 @@
         .nvg-field-text:focus, .nvg-field-area:focus { border-color: #5865F2 !important; background: rgba(0, 0, 0, 0.5) !important; }
 
         .nvg-options-list { display: flex !important; flex-direction: column !important; gap: 10px !important; width: 100% !important; }
-        .nvg-radio-label { display: flex !important; align-items: center !important; background: rgba(255, 255, 255, 0.01) !important; border: 1px solid rgba(255, 255, 255, 0.05) !important; padding: 12px 16px !important; border-radius: 10px !important; cursor: pointer !important; color: #dbdee1 !important; font-size: 0.95rem !important; box-sizing: border-box !important; width: 100% !important; min-height: 45px !important; }
+        .nvg-radio-label { display: flex !important; align-items: center !important; background: rgba(255, 255, 255, 0.01) !important; border: 1px solid rgba(255, 255, 255, 0.05) !important; padding: 12px 16px !important; border-radius: 10px !important; cursor: pointer !important; color: #dbdee1 !important; font-size: 0.95rem !important; box-sizing: border-box !important; width: 100% !important; min-height: 48px !important; }
         .nvg-radio-label:hover { background: rgba(88, 101, 242, 0.08) !important; border-color: #5865F2 !important; color: #fff !important; }
         .nvg-radio-label input[type="radio"] { margin-left: 12px !important; accent-color: #5865F2 !important; transform: scale(1.1) !important; cursor: pointer !important; }
 
@@ -241,7 +224,6 @@
         .nvg-card-glow { position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; background: radial-gradient(circle at 50% 0%, rgba(88, 101, 242, 0.1), transparent 60%) !important; pointer-events: none !important; border-radius: 20px !important; }
     </style>
 
-    <!-- سكريبت الإرسال المباشر والمتوافق مع الاستضافة -->
     <script>
         document.getElementById('staff-exam-form').addEventListener('submit', function(e) {
             e.preventDefault(); 
