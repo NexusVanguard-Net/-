@@ -74,7 +74,7 @@
 
                 <div class="form-group-adv">
                     <div class="question-row">
-                        <h3 class="q-text" data-qnum="1">السؤال 1: إذا قام لاعب بسبّ إداري داخل التكت الخاص به، ما الإجراء الصحيح؟</h3>
+                        <h3 class="q-text">السؤال 1: إذا قام لاعب بسبّ إداري داخل التكت الخاص به، ما الإجراء الصحيح؟</h3>
                         <span class="q-points">[ 10 درجات ]</span>
                     </div>
                     <div class="options-grid">
@@ -86,7 +86,7 @@
 
                 <div class="form-group-adv">
                     <div class="question-row">
-                        <h3 class="q-text" data-qnum="2">السؤال 2: رأيت إدارياً من رتبة أعلى منك يخترق القوانين أمام اللاعبين، ماذا تفعل؟</h3>
+                        <h3 class="q-text">السؤال 2: رأيت إدارياً من رتبة أعلى منك يخترق القوانين أمام اللاعبين، ماذا تفعل؟</h3>
                         <span class="q-points">[ 10 درجات ]</span>
                     </div>
                     <div class="options-grid">
@@ -103,7 +103,7 @@
 
                 <div class="form-group-adv">
                     <div class="question-row">
-                        <h3 class="q-text" data-qnum="3">السؤال 3: لماذا ترى نفسك مناسباً للانضمام لإدارة Nexus Vanguard؟ وما الذي ستضيفه للسيرفر؟</h3>
+                        <h3 class="q-text">السؤال 3: لماذا ترى نفسك مناسباً للانضمام لإدارة Nexus Vanguard؟ وما الذي ستضيفه للسيرفر؟</h3>
                         <span class="q-points">[ 15 درجة ]</span>
                     </div>
                     <textarea id="essay-q3" class="textarea-input-adv" rows="4" placeholder="اكتب إجابتك بالتفصيل هنا..." required></textarea>
@@ -111,7 +111,7 @@
 
                 <div class="form-group-adv">
                     <div class="question-row">
-                        <h3 class="q-text" data-qnum="4">السؤال 4: اشرح بالتفصيل كيف ستتصرف إذا حدثت مشاجرة كبيرة بين طاقم الدعم الفني (Staff) داخل روم صوتية؟</h3>
+                        <h3 class="q-text">السؤال 4: اشرح بالتفصيل كيف ستتصرف إذا حدثت مشاجرة كبيرة بين طاقم الدعم الفني (Staff) داخل روم صوتية؟</h3>
                         <span class="q-points">[ 20 درجة ]</span>
                     </div>
                     <textarea id="essay-q4" class="textarea-input-adv" rows="4" placeholder="اكتب السيناريو والتصرف الإداري الذكي هنا..." required></textarea>
@@ -196,35 +196,30 @@
 
     <script>
         document.getElementById('staff-exam-form').addEventListener('submit', function(e) {
-            e.preventDefault(); // منع الصفحة من الريفرش
+            e.preventDefault(); 
 
             const submitButton = document.getElementById('submit-btn');
             submitButton.disabled = true;
             submitButton.innerText = "جاري إرسال طلبك...";
 
-            // ⚠️ حط رابط الـ Webhook بتاع السيرفر بتاعك بين علامات التنصيص هنا تحت:
-            const webhookURL = "https://discord.com/api/webhooks/1519774590530748597/PQtbBv8vj848OeKFq1hZhPPUXZ8I51vkJIhW5TjQYMMjsu0QXWy-QM1lvU7QXoIpQ5Gs"; 
+            // ⚠️ حط رابط الـ Webhook بتاع شات الإدارة هنا بين علامات التنصيص:
+            const webhookURL = "https://discord.com/api/webhooks/1519774590530748597/PQtbBv8vj848OeKFq1hZhPPUXZ8I51vkJIhW5TjQYMMjsu0QXWy-QM1lvU7QXoIpQ5GsYOUR_DISCORD_WEBHOOK_URL_HERE"; 
 
-            // تجميع بيانات الشخص
+            // تجميع البيانات من الخانات
             const username = document.getElementById('discord-username').value;
             const age = document.getElementById('user-age').value;
-
-            // تجميع إجابات الأسئلة الاختيارية
             const q1Answer = document.querySelector('input[name="q1"]:checked')?.value || "لم يتم اختيار إجابة";
             const q2Answer = document.querySelector('input[name="q2"]:checked')?.value || "لم يتم اختيار إجابة";
-
-            // تجميع إجابات الأسئلة المقالية
             const q3Answer = document.getElementById('essay-q3').value;
             const q4Answer = document.getElementById('essay-q4').value;
 
-            // تجهيز شكل الرسالة الـ Embed الفخمة لترسل للديسكورد
+            // تجهيز شكل الرسالة الـ Embed الفخمة جوة الديسكورد
             const discordPayload = {
                 username: "Nexus Vanguard Bot",
-                avatar_url: "https://i.imgur.com/o7Rk5f0.png", // تقدر تغير الأفاتار لـ لوجو سيرفرك
                 embeds: [{
                     title: "📝 تقديم جديد على رتبة إدارة! (Staff Application)",
                     description: `قام اللاعب **${username}** بتقديم طلب انضمام جديد للإدارة من خلال الموقع الرسمي.`,
-                    color: 5793266, // لون ديسكورد البنفسجي المميز بالـ Decimal
+                    color: 5793266, 
                     fields: [
                         { name: "👤 اسم المستخدم:", value: username, inline: true },
                         { name: "⏳ العمر:", value: age, inline: true },
@@ -232,15 +227,15 @@
                         { name: "❓ السؤال 1: إذا قام لاعب بسبّ إداري داخل التكت الخاص به، ما الإجراء الصحيح؟", value: `🔹 **إجابة اللاعب:** ${q1Answer}` },
                         { name: "❓ السؤال 2: رأيت إدارياً من رتبة أعلى منك يخترق القوانين أمام اللاعبين، ماذا تفعل؟", value: `🔹 **إجابة اللاعب:** ${q2Answer}` },
                         { name: "───────────────────────", value: "📝 **إجابات الأسئلة الشرح والمقالي:**" },
-                        { name: "❓ السؤال 3: لماذا ترى نفسك مناسباً للانضمام للإدارة وما الذي ستضيفه؟", value: `💬 ${q3Answer}` },
+                        { name: "❓ السؤال 3: لماذا ترى نفسك مناسباً للإدارة وما الذي ستضيفه؟", value: `💬 ${q3Answer}` },
                         { name: "❓ السؤال 4: اشرح بالتفصيل كيف ستتصرف إذا حدثت مشاجرة بين طاقم الدعم الفني؟", value: `💬 ${q4Answer}` }
                     ],
-                    footer: { text: "Nexus Vanguard System • التقديمات الفورية" },
+                    footer: { text: "Nexus Vanguard System" },
                     timestamp: new Date().toISOString()
                 }]
             };
 
-            // إرسال البيانات للديسكورد فوراً عبر الـ Fetch API
+            // إرسال مباشر للديسكورد (بما إن الموقع على GitHub فـ مفيش أي مشاكل حظر)
             fetch(webhookURL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -248,15 +243,15 @@
             })
             .then(response => {
                 if (response.ok) {
-                    alert('🔥 تم إرسال طلب تقديمك للإدارة بنجاح يا غالي! شيك على الديسكورد.');
-                    document.getElementById('staff-exam-form').reset(); // تصفير الفورم بعد النجاح
+                    alert('🔥 أسطوري! تم إرسال طلبك بنجاح ووصل لغرفة الإدارة في الديسكورد.');
+                    document.getElementById('staff-exam-form').reset(); // تصفير الفورم
                 } else {
-                    alert('❌ حصلت مشكلة أثناء الإرسال، تأكد إنك حطيت الـ Webhook المظبوط.');
+                    alert('❌ الـ Webhook فيه مشكلة أو غير صحيح، تأكد من إعدادات الروم في ديسكورد.');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('❌ غير قادر على الاتصال بديسكورد حالياً.');
+                alert('❌ حصلت مشكلة أثناء الاتصال بالديسكورد.');
             })
             .finally(() => {
                 submitButton.disabled = false;
