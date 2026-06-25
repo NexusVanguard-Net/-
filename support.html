@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexus Vanguard - Recruitment</title>
     
+    <!-- الخطوط والأيقونات الأساسية -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- ملف الـ CSS القديم بتاعك -->
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
+    <!-- الخلفية المتحركة المرجعة بنجاح -->
     <div class="bg-animation">
         <div class="circle c1"></div>
         <div class="circle c2"></div>
     </div>
 
+    <!-- شريط التنقل (Navbar) -->
     <nav class="navbar">
         <div class="nav-logo">
             <i class="fa-brands fa-discord"></i>
@@ -32,109 +36,120 @@
         <a href="YOUR_DISCORD_INVITE_LINK" target="_blank" class="nav-btn">Join Us</a>
     </nav>
 
-    <div class="form-wrapper-box">
-        <div class="exam-card-advanced">
-            <div class="card-glow"></div>
+    <!-- الحاوية المعزولة تماماً لمنع شقلبة الستايل -->
+    <div class="nvg-isolated-container">
+        <div class="nvg-main-card">
+            <div class="nvg-card-glow"></div>
             
-            <div class="exam-header">
-                <div class="header-badge"><i class="fa-solid fa-shield-halved"></i> طلب الانضمام لطاقم الإدارة</div>
+            <!-- الهيدر -->
+            <div class="nvg-header">
+                <div class="nvg-badge"><i class="fa-solid fa-shield-halved"></i> طلب الانضمام لطاقم الإدارة</div>
                 <h2>Staff Recruitment Form</h2>
-                <div class="target-score-info">
+                <div class="nvg-info-row">
                     <span><i class="fa-solid fa-award"></i> درجة القبول: 85% فما فوق</span>
                     <span><i class="fa-solid fa-clipboard-list"></i> النموذج يحتوي على أسئلة خيارات وأسئلة مقالية</span>
                 </div>
             </div>
 
+            <!-- الفورم الرئيسي -->
             <form id="staff-exam-form">
                 
-                <div class="section-divider">
+                <!-- القسم الأول -->
+                <div class="nvg-divider">
                     <span><i class="fa-solid fa-id-card"></i> القسم الأول: البيانات الشخصية</span>
                 </div>
 
-                <div class="form-group-adv">
-                    <div class="question-row">
+                <div class="nvg-input-box">
+                    <div class="nvg-q-row">
                         <h3>اسمك في الديسكورد (اليوزر):</h3>
-                        <span class="req-star">* إجباري</span>
+                        <span class="nvg-required">* إجباري</span>
                     </div>
-                    <input type="text" id="discord-username" class="text-input-adv" placeholder="مثال: mido_nvg" required>
+                    <input type="text" id="discord-username" class="nvg-field-text" placeholder="مثال: mido_nvg" required>
                 </div>
 
-                <div class="form-group-adv">
-                    <div class="question-row">
+                <div class="nvg-input-box">
+                    <div class="nvg-q-row">
                         <h3>كم عمرك؟</h3>
-                        <span class="req-star">* إجباري</span>
+                        <span class="nvg-required">* إجباري</span>
                     </div>
-                    <input type="number" id="user-age" class="text-input-adv" placeholder="اكتب عمرك الحقيقي هنا..." required>
+                    <input type="number" id="user-age" class="nvg-field-text" placeholder="اكتب عمرك الحقيقي هنا..." required>
                 </div>
 
-                <div class="section-divider">
+                <!-- القسم الثاني -->
+                <div class="nvg-divider">
                     <span><i class="fa-solid fa-list-check"></i> القسم الثاني: أسئلة الاختيارات</span>
                 </div>
 
-                <div class="form-group-adv">
-                    <div class="question-row">
-                        <h3 class="q-text">السؤال 1: اكتب نص السؤال الأول هنا...</h3>
-                        <span class="q-points">[ 10 درجات ]</span>
+                <!-- سؤال اختيار 1 -->
+                <div class="nvg-input-box">
+                    <div class="nvg-q-row">
+                        <h3 class="nvg-question-text">السؤال 1: </h3>
+                        <span class="nvg-points">[ 10 درجات ]</span>
                     </div>
-                    <div class="options-grid">
-                        <label class="exam-option-adv">
+                    <div class="nvg-options-list">
+                        <label class="nvg-radio-label">
                             <input type="radio" name="q1" value="الاختيار الأول" required>
-                            <span>اكتب هنا الاختيار الأول</span>
+                            <span></span>
                         </label>
-                        <label class="exam-option-adv">
+                        <label class="nvg-radio-label">
                             <input type="radio" name="q1" value="الاختيار الثاني">
-                            <span>اكتب هنا الاختيار الثاني</span>
+                            <span></span>
                         </label>
-                        <label class="exam-option-adv">
+                        <label class="nvg-radio-label">
                             <input type="radio" name="q1" value="الاختيار الثالث">
-                            <span>اكتب هنا الاختيار الثالث</span>
+                            <span></span>
                         </label>
                     </div>
                 </div>
 
-                <div class="form-group-adv">
-                    <div class="question-row">
-                        <h3 class="q-text">السؤال 2: اكتب نص السؤال الثاني هنا...</h3>
-                        <span class="q-points">[ 10 درجات ]</span>
+                <!-- سؤال اختيار 2 -->
+                <div class="nvg-input-box">
+                    <div class="nvg-q-row">
+                        <h3 class="nvg-question-text">السؤال 2: </h3>
+                        <span class="nvg-points">[ 10 درجات ]</span>
                     </div>
-                    <div class="options-grid">
-                        <label class="exam-option-adv">
+                    <div class="nvg-options-list">
+                        <label class="nvg-radio-label">
                             <input type="radio" name="q2" value="الاختيار الأول" required>
-                            <span>اكتب هنا الاختيار الأول</span>
+                            <span></span>
                         </label>
-                        <label class="exam-option-adv">
+                        <label class="nvg-radio-label">
                             <input type="radio" name="q2" value="الاختيار الثاني">
-                            <span>اكتب هنا الاختيار الثاني</span>
+                            <span></span>
                         </label>
-                        <label class="exam-option-adv">
+                        <label class="nvg-radio-label">
                             <input type="radio" name="q2" value="الاختيار الثالث">
-                            <span>اكتب هنا الاختيار الثالث</span>
+                            <span></span>
                         </label>
                     </div>
                 </div>
 
-                <div class="section-divider">
+                <!-- القسم الثالث -->
+                <div class="nvg-divider">
                     <span><i class="fa-solid fa-pen-to-square"></i> القسم الثالث: أسئلة الشرح والمواقف (مقالي)</span>
                 </div>
 
-                <div class="form-group-adv">
-                    <div class="question-row">
-                        <h3 class="q-text">السؤال 3: اكتب السؤال المقالي الأول هنا...</h3>
-                        <span class="q-points">[ 15 درجة ]</span>
+                <!-- سؤال مقالي 1 -->
+                <div class="nvg-input-box">
+                    <div class="nvg-q-row">
+                        <h3 class="nvg-question-text">السؤال 3: </h3>
+                        <span class="nvg-points">[ 15 درجة ]</span>
                     </div>
-                    <textarea id="essay-q3" class="textarea-input-adv" rows="4" placeholder="اكتب إجابتك بالتفصيل هنا..." required></textarea>
+                    <textarea id="essay-q3" class="nvg-field-area" rows="4" placeholder="" required></textarea>
                 </div>
 
-                <div class="form-group-adv">
-                    <div class="question-row">
-                        <h3 class="q-text">السؤال 4: اكتب السؤال المقالي الثاني هنا...</h3>
-                        <span class="q-points">[ 20 درجة ]</span>
+                <!-- سؤال مقالي 2 -->
+                <div class="nvg-input-box">
+                    <div class="nvg-q-row">
+                        <h3 class="nvg-question-text">السؤال 4: </h3>
+                        <span class="nvg-points">[ 20 درجة ]</span>
                     </div>
-                    <textarea id="essay-q4" class="textarea-input-adv" rows="4" placeholder="اكتب السيناريو والتصرف الإداري هنا..." required></textarea>
+                    <textarea id="essay-q4" class="nvg-field-area" rows="4" placeholder="" required></textarea>
                 </div>
 
-                <div class="exam-footer-adv">
-                    <button type="submit" id="submit-btn" class="submit-btn-adv">
+                <!-- زر الإرسال -->
+                <div class="nvg-btn-wrapper">
+                    <button type="submit" id="submit-btn" class="nvg-submit-btn">
                         <span>تقديم الطلب الآن</span>
                         <i class="fa-solid fa-paper-plane"></i>
                     </button>
@@ -144,74 +159,89 @@
         </div>
     </div>
 
+    <!-- تنسيقات قوية ومستقلة تمنع أي تداخل أو شقلبة عرضية -->
     <style>
-        .form-wrapper-box {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            padding: 150px 20px 80px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-sizing: border-box;
+        /* كود تنسيق الخلفية المتحركة والدوائر للتأكد من ظهورها */
+        .bg-animation {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 1 !important;
+            overflow: hidden !important;
+            pointer-events: none !important;
+            background-color: #08090c !important;
         }
 
-        .exam-card-advanced {
-            position: relative;
-            width: 100%;
-            max-width: 850px;
-            background: rgba(13, 14, 23, 0.9);
-            border: 1px solid rgba(88, 101, 242, 0.3);
-            border-radius: 24px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 45px 35px;
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8);
-            direction: rtl;
-            font-family: 'Cairo', sans-serif;
-            box-sizing: border-box;
+        .nvg-isolated-container {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+            min-height: 100vh !important;
+            padding: 150px 20px 80px 20px !important; /* مسافة علوية عشان النيوبار */
+            box-sizing: border-box !important;
+            position: relative !important;
+            z-index: 10 !important; /* فوق الخلفية */
         }
 
-        .exam-header { text-align: center; margin-bottom: 35px; }
-        .header-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(88, 101, 242, 0.15); color: #5865F2;
-            border: 1px solid rgba(88, 101, 242, 0.3); padding: 8px 18px;
-            border-radius: 30px; font-weight: 700; font-size: 0.9rem; margin-bottom: 15px;
+        .nvg-main-card {
+            position: relative !important;
+            width: 100% !important;
+            max-width: 800px !important;
+            background: rgba(15, 17, 28, 0.85) !important; /* تفتيح خفيف للشفافية مع الخلفية */
+            border: 1px solid rgba(88, 101, 242, 0.25) !important;
+            border-radius: 24px !important;
+            padding: 45px 35px !important;
+            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.7) !important;
+            box-sizing: border-box !important;
+            direction: rtl !important;
+            font-family: 'Cairo', sans-serif !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
         }
 
-        .exam-header h2 { font-size: 2.2rem; font-weight: 900; color: #fff; margin: 10px 0; font-family: 'Inter', sans-serif; }
-        .target-score-info { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
-        .target-score-info span { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 6px 14px; border-radius: 10px; font-size: 0.85rem; color: #b9bbbe; display: flex; align-items: center; gap: 6px; }
-        .target-score-info span i { color: #00d2ff; }
+        .nvg-header { text-align: center !important; margin-bottom: 30px !important; width: 100% !important; }
+        .nvg-badge {
+            display: inline-flex !important; align-items: center !important; gap: 8px !important;
+            background: rgba(88, 101, 242, 0.15) !important; color: #5865F2 !important;
+            border: 1px solid rgba(88, 101, 242, 0.3) !important; padding: 6px 16px !important;
+            border-radius: 30px !important; font-weight: 700 !important; font-size: 0.88rem !important;
+        }
 
-        .section-divider { display: flex; align-items: center; margin: 35px 0 20px 0; color: #5865F2; font-weight: 800; font-size: 1.1rem; }
-        .section-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(88, 101, 242, 0.3), transparent); margin-right: 15px; }
-        .section-divider i { margin-left: 8px; }
+        .nvg-header h2 { font-size: 2.2rem !important; font-weight: 900 !important; color: #fff !important; margin: 15px 0 !important; font-family: 'Inter', sans-serif !important; }
+        .nvg-info-row { display: flex !important; justify-content: center !important; gap: 15px !important; flex-wrap: wrap !important; }
+        .nvg-info-row span { background: rgba(255, 255, 255, 0.03) !important; border: 1px solid rgba(255, 255, 255, 0.06) !important; padding: 6px 12px !important; border-radius: 8px !important; font-size: 0.85rem !important; color: #b9bbbe !important; display: flex !important; align-items: center !important; gap: 6px !important; }
+        .nvg-info-row span i { color: #00d2ff !important; }
 
-        .form-group-adv { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 22px; border-radius: 16px; margin-bottom: 25px; box-sizing: border-box; }
-        .question-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; gap: 15px; }
-        .question-row h3 { font-size: 1.1rem; color: #fff; font-weight: 700; margin: 0; line-height: 1.4; }
-        .q-points { font-size: 0.85rem; color: #00d2ff; font-weight: 700; background: rgba(0, 210, 255, 0.1); padding: 4px 10px; border-radius: 6px; white-space: nowrap; }
-        .req-star { font-size: 0.8rem; color: #ff4757; font-weight: 700; white-space: nowrap; }
+        .nvg-divider { display: flex !important; align-items: center !important; margin: 35px 0 20px 0 !important; color: #5865F2 !important; font-weight: 800 !important; font-size: 1.05rem !important; width: 100% !important; }
+        .nvg-divider::after { content: '' !important; flex: 1 !important; height: 1px !important; background: linear-gradient(90deg, rgba(88, 101, 242, 0.3), transparent) !important; margin-right: 15px !important; }
+        .nvg-divider i { margin-left: 6px !important; }
 
-        .text-input-adv, .textarea-input-adv { width: 100%; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 18px; border-radius: 10px; color: #fff; font-family: 'Cairo', sans-serif; font-size: 0.95rem; outline: none; transition: all 0.2s ease; box-sizing: border-box; }
-        .text-input-adv:focus, .textarea-input-adv:focus { border-color: #5865F2; box-shadow: 0 0 10px rgba(88, 101, 242, 0.2); background: rgba(0, 0, 0, 0.5); }
-        .textarea-input-adv { resize: vertical; }
+        .nvg-input-box { display: flex !important; flex-direction: column !important; background: rgba(255, 255, 255, 0.01) !important; border: 1px solid rgba(255, 255, 255, 0.04) !important; padding: 20px !important; border-radius: 14px !important; margin-bottom: 20px !important; box-sizing: border-box !important; width: 100% !important; }
+        .nvg-q-row { display: flex !important; justify-content: space-between !important; align-items: center !important; margin-bottom: 12px !important; gap: 15px !important; width: 100% !important; }
+        .nvg-q-row h3 { font-size: 1.05rem !important; color: #fff !important; font-weight: 700 !important; margin: 0 !important; }
+        .nvg-points { font-size: 0.8rem !important; color: #00d2ff !important; font-weight: 700 !important; background: rgba(0, 210, 255, 0.1) !important; padding: 3px 8px !important; border-radius: 5px !important; }
+        .nvg-required { font-size: 0.8rem !important; color: #ff4757 !important; font-weight: 700; }
 
-        .options-grid { display: flex; flex-direction: column; gap: 10px; width: 100%; box-sizing: border-box; }
-        .exam-option-adv { display: flex; align-items: center; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); padding: 14px 18px; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; color: #dbdee1; font-size: 0.95rem; text-align: right; box-sizing: border-box; }
-        .exam-option-adv:hover { background: rgba(88, 101, 242, 0.1); border-color: #5865F2; color: #fff; }
-        .exam-option-adv input[type="radio"] { margin-left: 12px; accent-color: #5865F2; transform: scale(1.1); margin-top: 0; margin-bottom: 0; cursor: pointer; }
-        .exam-option-adv span { line-height: 1.4; }
+        .nvg-field-text, .nvg-field-area { width: 100% !important; background: rgba(0, 0, 0, 0.4) !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; padding: 12px 16px !important; border-radius: 10px !important; color: #fff !important; font-family: 'Cairo', sans-serif !important; font-size: 0.95rem !important; outline: none !important; box-sizing: border-box !important; }
+        .nvg-field-text:focus, .nvg-field-area:focus { border-color: #5865F2 !important; background: rgba(0, 0, 0, 0.5) !important; }
 
-        .exam-footer-adv { margin-top: 40px; text-align: center; }
-        .submit-btn-adv { background: linear-gradient(135deg, #5865F2, #404eed); color: #fff; border: none; padding: 14px 45px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: all 0.25s ease; font-family: 'Cairo', sans-serif; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 8px 24px rgba(88, 101, 242, 0.3); }
-        .submit-btn-adv:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(88, 101, 242, 0.4); }
+        .nvg-options-list { display: flex !important; flex-direction: column !important; gap: 10px !important; width: 100% !important; }
+        .nvg-radio-label { display: flex !important; align-items: center !important; background: rgba(255, 255, 255, 0.01) !important; border: 1px solid rgba(255, 255, 255, 0.05) !important; padding: 12px 16px !important; border-radius: 10px !important; cursor: pointer !important; color: #dbdee1 !important; font-size: 0.95rem !important; box-sizing: border-box !important; width: 100% !important; min-height: 45px !important; }
+        .nvg-radio-label:hover { background: rgba(88, 101, 242, 0.08) !important; border-color: #5865F2 !important; color: #fff !important; }
+        .nvg-radio-label input[type="radio"] { margin-left: 12px !important; accent-color: #5865F2 !important; transform: scale(1.1) !important; cursor: pointer !important; }
+
+        .nvg-btn-wrapper { text-align: center !important; margin-top: 30px !important; width: 100% !important; }
+        .nvg-submit-btn { background: linear-gradient(135deg, #5865F2, #404eed) !important; color: #fff !important; border: none !important; padding: 14px 40px !important; border-radius: 12px !important; font-weight: 800 !important; font-size: 1.05rem !important; cursor: pointer !important; display: inline-flex !important; align-items: center !important; gap: 10px !important; box-shadow: 0 8px 20px rgba(88, 101, 242, 0.3) !important; font-family: 'Cairo', sans-serif !important; }
+        .nvg-submit-btn:hover { transform: translateY(-2px) !important; box-shadow: 0 12px 28px rgba(88, 101, 242, 0.4) !important; }
         
-        .card-glow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 0%, rgba(88, 101, 242, 0.1), transparent 55%); pointer-events: none; border-radius: 24px; }
+        .nvg-card-glow { position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; background: radial-gradient(circle at 50% 0%, rgba(88, 101, 242, 0.1), transparent 60%) !important; pointer-events: none !important; border-radius: 20px !important; }
     </style>
 
+    <!-- سكريبت الإرسال المباشر والمتوافق مع الاستضافة -->
     <script>
         document.getElementById('staff-exam-form').addEventListener('submit', function(e) {
             e.preventDefault(); 
@@ -232,8 +262,8 @@
             const discordPayload = {
                 username: "Nexus Vanguard Bot",
                 embeds: [{
-                    title: "📝 تقديم جديد على رتبة إدارة! (Staff Application)",
-                    description: `قام اللاعب **${username}** بتقديم طلب انضمام جديد للإدارة من خلال الموقع الرسمي.`,
+                    title: "📝 تقديم جديد على رتبة إدارة! (Support/Staff)",
+                    description: `قام اللاعب **${username}** بتقديم طلب انضمام جديد للإدارة من خلال صفحة الدعم.`,
                     color: 5793266, 
                     fields: [
                         { name: "👤 اسم المستخدم:", value: username, inline: true },
